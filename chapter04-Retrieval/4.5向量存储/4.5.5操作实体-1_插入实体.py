@@ -5,10 +5,15 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import UnstructuredWordDocumentLoader
 
 # 实例化向量数据库客户端
+# client = MilvusClient(
+#   uri="./milvus_demo.db", # 数据存储在本地当前目录下
+# )
+# windows可以用docker,https://milvus.io/docs/zh/install_standalone-windows.md
+# 连接到 Docker 中的 Milvus
 client = MilvusClient(
-  uri="./milvus_demo.db", # 数据存储在本地当前目录下
+    uri="http://localhost:19530",
+    token="root:Milvus"  # 默认用户名密码
 )
-
 # 加载文档
 docs = UnstructuredWordDocumentLoader(
   file_path="assets/sample.docx",
