@@ -1,6 +1,13 @@
 # pip install unstructured[local-inference]
 from langchain_community.document_loaders import UnstructuredPDFLoader
 
+# 特别注意：要先下载Poppler 和 Tesseract OCR。
+# Poppler：https://github.com/oschwartz10612/poppler-windows/releases
+# 下载解压后将 .../poppler-24.08.0/Library/bin 添加到环境变量 Path 中即可
+
+
+# Tesseract OCR：https://github.com/UB-Mannheim/tesseract/wiki
+# Tesseract OCR 用于提取图片中的文字 ， 在安装时需要选择 Additional language data(download) 来添加中文语言包。安装后，将安装时设置的安装目录添加到环境变量 Path 中。
 docs = UnstructuredPDFLoader(
   file_path="assets/sample.pdf", # 文件路径
   # 加载模式:

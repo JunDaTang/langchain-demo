@@ -19,8 +19,9 @@ dependencies = [
     "langchain-openai>=1.1.6",
     "langchain-text-splitters>=1.1.0",
     "openai>=2.14.0",
-    "pymilvus>=2.6.5",
+    "pymilvus[milvus-lite]>=2.6.6",
     "sentence-transformers>=5.2.0",
+    "unstructured[docx,local-inference,md]>=0.18.21",
     "vectorstores>=0.1.2.dev50",
 ]
 
