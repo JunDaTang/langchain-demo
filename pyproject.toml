@@ -5,17 +5,22 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "beautifulsoup4>=4.14.3",
     "bs4>=0.0.2",
     "dotenv>=0.9.9",
     "faiss-cpu>=1.13.2",
+    "jq>=1.10.0",
     "jupyter>=1.1.1",
     "langchain>=1.2.0",
     "langchain-community>=0.4.1",
     "langchain-core>=1.2.5",
+    "langchain-huggingface>=1.2.0",
     "langchain-ollama>=1.0.1",
     "langchain-openai>=1.1.6",
     "langchain-text-splitters>=1.1.0",
     "openai>=2.14.0",
+    "pymilvus>=2.6.5",
+    "sentence-transformers>=5.2.0",
     "vectorstores>=0.1.2.dev50",
 ]
 
