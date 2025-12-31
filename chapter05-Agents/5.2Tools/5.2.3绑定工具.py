@@ -1,6 +1,8 @@
 import os
 from langchain.tools import tool
 from langchain.chat_models import init_chat_model
+import dotenv
+dotenv.load_dotenv()
 
 @tool
 def query_user_info(user_id: int) -> str:
@@ -30,3 +32,4 @@ for tool_call in resp.tool_calls:
   tool_args = tool_call["args"] # 获取工具参数
   tool_result = globals()[tool_name].invoke(tool_args) # 执行工具
   print(tool_name, tool_args, tool_result)
+  print('')

@@ -1,13 +1,13 @@
 # pip install mcp
 import asyncio
 from mcp import ClientSession
-from mcp.client.streamable_http import streamablehttp_client
+from mcp.client.streamable_http import streamable_http_client
 
 async def streamablehttp_run():
   url = "http://127.0.0.1:8000/mcp"
-  headers = {"Authorization": "Bearer sk-atguigu"}
+  # headers = {"Authorization": "Bearer sk-atguigu"}
 
-  async with streamablehttp_client(url, headers) as (read, write, _):
+  async with streamable_http_client(url) as (read, write, _):
     async with ClientSession(read, write) as session:
       # 初始化连接
       await session.initialize()

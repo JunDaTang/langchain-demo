@@ -7,14 +7,15 @@ from email.mime.text import MIMEText
 from langchain.agents import create_agent
 from langchain.chat_models import init_chat_model
 from langchain_mcp_adapters.client import MultiServerMCPClient
+import dotenv
+dotenv.load_dotenv()
 
 llm = init_chat_model(
-  model="z-ai/glm-4.5-air:free",
-  model_provider="openai",
-  base_url="https://openrouter.ai/api/v1",
-  api_key=os.getenv("OPENROUTER_API_KEY"),
+  model="deepseek-chat",
+  model_provider="deepseek",
+  base_url=os.getenv("DEEPSEEK_BASE_URL"),
+  api_key=os.getenv("DEEPSEEK_API_KEY"),
 )
-
 # ========== 创建一个有搜索功能的子Agent ==========
 class SearchSubAgent:
   """带搜索功能的子Agent"""
@@ -125,7 +126,7 @@ async def main():
       "messages": [
         {
           "role": "user",
-          "content": "北京明天天气怎么样，要是还不错的话，帮我看看明天上海到北京的车票。如果天气好的话，发送邮件给xxxxxx@qq.com告诉他我明天去北京。如果天气不好的话就告诉他我明天不去北京了。",
+          "content": "广州明天天气怎么样，要是还不错的话，帮我看看明天深圳到广州的车票。如果天气好的话，直接发送邮件给454122373@qq.com告诉他我明天去广州。如果天气不好的话就告诉他我明天不去广州了。",
         }
       ]
     }

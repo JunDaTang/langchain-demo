@@ -2,11 +2,13 @@
 import asyncio
 from mcp.client.stdio import stdio_client
 from mcp import ClientSession, StdioServerParameters
+import dotenv
+dotenv.load_dotenv()
 
 async def stdio_run():
   server_params = StdioServerParameters(
     command="python",
-    args=["mcp_server_stdio.py"],
+    args=[r"chapter05-Agents\5.6MCP\5.6.5MCP SDK-1_Stdio 服务端.py"],
   )
 
   async with stdio_client(server_params) as (read, write):

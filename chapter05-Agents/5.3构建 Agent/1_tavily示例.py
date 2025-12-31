@@ -3,14 +3,17 @@ import os
 from langchain_tavily import TavilySearch
 from langchain.agents import create_agent
 from langchain.chat_models import init_chat_model
+import dotenv
+dotenv.load_dotenv()
 
 # 定义模型
 llm = init_chat_model(
-  model="z-ai/glm-4.5-air:free",
-  model_provider="openai",
-  base_url="https://openrouter.ai/api/v1",
-  api_key=os.getenv("OPENROUTER_API_KEY"),
+  model="deepseek-chat",
+  model_provider="deepseek",
+  base_url=os.getenv("DEEPSEEK_BASE_URL"),
+  api_key=os.getenv("DEEPSEEK_API_KEY"),
 )
+
 
 # 定义 Tavily 搜索工具
 search = TavilySearch(max_results=5)

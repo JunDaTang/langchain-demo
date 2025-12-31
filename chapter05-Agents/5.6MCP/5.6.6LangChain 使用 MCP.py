@@ -5,6 +5,8 @@ from urllib.parse import urlencode
 from langchain.agents import create_agent
 from langchain.chat_models import init_chat_model
 from langchain_mcp_adapters.client import MultiServerMCPClient
+import dotenv
+dotenv.load_dotenv()
 
 # 配置 MCP 客户端
 mcp_client = MultiServerMCPClient(
@@ -24,13 +26,14 @@ mcp_client = MultiServerMCPClient(
 tools = asyncio.run(mcp_client.get_tools())
 
 # 定义模型
-llm = init_chat_model(
-  model="z-ai/glm-4.5-air:free",
-  model_provider="openai",
-  base_url="https://openrouter.ai/api/v1",
-  api_key=os.getenv("OPENROUTER_API_KEY"),
-)
 
+# 定义模型
+llm = init_chat_model(
+  model="deepseek-chat",
+  model_provider="deepseek",
+  base_url=os.getenv("DEEPSEEK_BASE_URL"),
+  api_key=os.getenv("DEEPSEEK_API_KEY"),
+)
 # 创建 Agent
 agent = create_agent(model=llm, tools=tools)
 
