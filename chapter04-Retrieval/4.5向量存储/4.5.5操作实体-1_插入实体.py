@@ -29,7 +29,8 @@ chunks = RecursiveCharacterTextSplitter(
 
 # 加载嵌入模型
 embed_model = HuggingFaceEmbeddings(
-  model_name=os.path.expanduser("~/models/bge-base-zh-v1.5")
+  # model_name=os.path.expanduser("~/models/bge-base-zh-v1.5")
+  model_name="BAAI/bge-base-zh-v1.5"  # 使用在线模型ID，HuggingFace会自动下载
 )
 
 # 计算嵌入向量

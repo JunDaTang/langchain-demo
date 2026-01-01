@@ -1,5 +1,7 @@
 import os
 import requests
+import dotenv
+dotenv.load_dotenv()
 
 def upload_files(file_paths: list[str]) -> str:
   """批量上传文件"""
@@ -64,7 +66,20 @@ def download_files(batch_id):
     "Authorization": f"Bearer {api_key}",
   }
   res = requests.get(url, headers=header)
-  extract_results = res.json()["data"]["extract_result"]
+  if res.status_code != 200:
+    print(f"获取结果失败。状态码: {res.status_code}，响应: {res.text}")
+    print("请检查:")
+    print("1. MINERU_API_KEY 环境变量是否已设置")
+    print("2. API Key 是否有效")
+    print("3. batch_id 是否正确")
+    return
+  
+  result = res.json()
+  if not result or "data" not in result:
+    print(f"响应格式错误: {result}")
+    return
+  
+  extract_results = result["data"]["extract_result"]
   failed_files = set() # 失败文件集合
   done_files = set() # 完成文件集合
   while True:
@@ -87,6 +102,6 @@ def download_files(batch_id):
   for i in done_files:
     print(i)
 
-file_paths = ["assets/sample.pdf"]
+file_paths = [r"assets\尚硅谷大模型项目实战之智选新闻1.0.pdf"]
 batch_id = upload_files(file_paths)
 download_files(batch_id)
